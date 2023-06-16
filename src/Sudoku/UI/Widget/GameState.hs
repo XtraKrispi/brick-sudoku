@@ -9,5 +9,5 @@ import Sudoku.UI.Widget.NewGameMenu qualified as NewGameMenu
 gameState :: GameState -> Widget Name
 gameState (MainMenu menuSelection) = MainMenu.menu menuSelection
 gameState (NewGameMenu menuSelection) = NewGameMenu.menu menuSelection
-gameState (Playing (PlayingState diff grid selected)) = Grid.grid grid selected
+gameState (Playing (PlayingState _ grid selected)) = Grid.grid grid selected
 gameState LoadingGameMenu = str "Hello"

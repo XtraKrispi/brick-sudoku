@@ -1,6 +1,6 @@
 module Sudoku.Utils where
 
-import Data.List (intercalate, (\\))
+import Data.List ((\\))
 import Data.List qualified
 import Data.List.Split (chunksOf)
 import Data.Map (Map, elems, insert, singleton, (!))
@@ -49,7 +49,7 @@ readGrid xs =
           ( \(idx, c) ->
               if idx < 81
                 then case convert c of
-                  Just n -> Just (toCoord idx, Filled n)
+                  Just n -> Just (toCoord idx, Static n)
                   Nothing -> Nothing
                 else Nothing
           )
@@ -65,6 +65,7 @@ showGrid =
     . unGrid
  where
   showCell (Filled x) = show x
+  showCell (Static x) = show x
   showCell (Possible _) = "."
 
 showGridString :: UnfilledGrid -> String
@@ -75,6 +76,7 @@ showGridString =
     . unGrid
  where
   showCell (Filled x) = show x
+  showCell (Static x) = show x
   showCell (Possible _) = "."
 
 showFilledGrid :: FilledGrid -> String
@@ -96,6 +98,7 @@ showGridWithPossibilities =
     . unGrid
  where
   showCell (Filled x) = show x ++ "          "
+  showCell (Static x) = show x ++ "          "
   showCell (Possible xs) =
     (++ "]")
       . Data.List.foldl' (\acc x -> acc ++ if x `elem` xs then show x else " ") "["
@@ -111,7 +114,7 @@ nodups (x : xs) = x `notElem` xs && nodups xs
 
 -- | Splits a list into multiple lists of a given length.
 groupBy :: Int -> [a] -> [[a]]
-groupBy n [] = []
+groupBy _ [] = []
 groupBy n xs = (take n xs) : groupBy n (drop n xs)
 
 -- | The reverse operation of groupBy.
@@ -120,7 +123,7 @@ ungroup = concat
 
 -- | Is true iff a given list contains exactly one element.
 single :: [a] -> Bool
-single [a] = True
+single [_] = True
 single _ = False
 
 -- | Removes the elements of the first list from the second list.

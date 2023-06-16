@@ -36,7 +36,10 @@ instance Random Number where
         (x, g') -> (toEnum x, g')
   random g = randomR (minBound, maxBound) g
 
-data Cell = Possible [Number] | Filled Number
+data Cell
+  = Possible [Number]
+  | Filled Number
+  | Static Number
   deriving (Show, Eq)
 
 type Coord = (Int, Int)

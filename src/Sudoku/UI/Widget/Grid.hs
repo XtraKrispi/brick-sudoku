@@ -10,6 +10,7 @@ import Sudoku.UI.Types (Name)
 toString :: Cell -> String
 toString (Possible _) = " "
 toString (Filled num) = show num
+toString (Static num) = show num
 
 row :: Coord -> [(Coord, Cell)] -> Widget Name
 row selected cells = hBox $ (\(coord, cell) -> border . (withAttr (if selected == coord then attrName "selected" else mempty)) . str . toString $ cell) <$> cells

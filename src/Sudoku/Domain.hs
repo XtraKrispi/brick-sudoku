@@ -45,11 +45,11 @@ getBox boxNum (Grid g) =
 
 isPossible :: Cell -> Bool
 isPossible (Possible _) = True
-isPossible (Filled _) = False
+isPossible _ = False
 
 numberOfPossibilities :: Cell -> Int
 numberOfPossibilities (Possible xs) = length xs
-numberOfPossibilities (Filled _) = 1
+numberOfPossibilities _ = 1
 
 isGridFilled :: UnfilledGrid -> Bool
 isGridFilled (Grid grid) = null [() | Possible _ <- elems grid]
@@ -88,6 +88,7 @@ updateGrid (Grid g)
               ( \(i, e) -> case e of
                   Possible _ -> Nothing
                   Filled n -> Just (i, n)
+                  Static n -> Just (i, n)
               )
                 <$> assocs g
   | otherwise = Nothing
@@ -99,7 +100,7 @@ getEmptyCells =
       ( \(_, c) ->
           case c of
             Possible _ -> True
-            Filled _ -> False
+            _ -> False
       )
     . assocs
     . unGrid

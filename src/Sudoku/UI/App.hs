@@ -2,8 +2,7 @@
 
 module Sudoku.UI.App where
 
-import Brick (App (App, appChooseCursor, appHandleEvent, appStartEvent), AttrMap, BrickEvent (..), EventM, appAttrMap, appDraw, attrMap, attrName, defaultMain, get, halt, modify, on, put)
-import Control.Concurrent (threadDelay)
+import Brick (App (App, appChooseCursor, appHandleEvent, appStartEvent), AttrMap, BrickEvent (..), EventM, appAttrMap, appDraw, attrMap, attrName, defaultMain, get, halt, on, put)
 import Control.Monad.IO.Class (liftIO)
 import Graphics.Vty (Attr, Event (..), Key (..), black, white)
 import Sudoku.Domain (nextCol, nextRow, prevCol, prevRow)
