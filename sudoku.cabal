@@ -1,0 +1,75 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           sudoku
+version:        0.1.0.0
+category:       Game
+author:         Michael Gold
+maintainer:     XtraKrispi@gmail.com
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+
+library
+  exposed-modules:
+      Sudoku.Data
+      Sudoku.Domain
+      Sudoku.Loader
+      Sudoku.Solver
+      Sudoku.Types
+      Sudoku.UI.App
+      Sudoku.UI.Types
+      Sudoku.UI.Widget.GameState
+      Sudoku.UI.Widget.Grid
+      Sudoku.UI.Widget.MainMenu
+      Sudoku.UI.Widget.NewGameMenu
+      Sudoku.Utils
+  other-modules:
+      Paths_sudoku
+  hs-source-dirs:
+      src
+  ghc-options: -Wall
+  build-depends:
+      HandsomeSoup
+    , base
+    , brick
+    , bytestring
+    , containers
+    , http-client
+    , http-client-tls
+    , hxt
+    , microlens
+    , microlens-th
+    , random
+    , random-shuffle
+    , split
+    , text
+    , vty
+  default-language: GHC2021
+
+executable sudoku
+  main-is: Main.hs
+  other-modules:
+      Paths_sudoku
+  hs-source-dirs:
+      app
+  ghc-options: -threaded
+  build-depends:
+      base
+    , sudoku
+  default-language: GHC2021
+
+test-suite sudoku-test
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  other-modules:
+      Paths_sudoku
+  hs-source-dirs:
+      test
+  build-depends:
+      base
+    , sudoku
+  default-language: GHC2021

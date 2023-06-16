@@ -1,0 +1,42 @@
+name: sudoku
+version: '0.1.0.0'
+category: Game
+author: Michael Gold
+maintainer: XtraKrispi@gmail.com
+license: MIT
+dependencies:
+- base
+library:
+  language: GHC2021
+  source-dirs: src
+  ghc-options: -Wall
+  dependencies:
+  - random
+  - random-shuffle
+  - containers
+  - split
+  - http-client
+  - http-client-tls
+  - HandsomeSoup
+  - text
+  - hxt
+  - bytestring
+  - brick
+  - vty
+  - microlens
+  - microlens-th
+executables:
+  sudoku:
+    language: GHC2021
+    main: Main.hs
+    ghc-options: -threaded
+    source-dirs: app
+    dependencies:
+    - sudoku
+tests:
+  sudoku-test:
+    language: GHC2021
+    main: Main.hs
+    source-dirs: test
+    dependencies:
+    - sudoku
