@@ -7,7 +7,7 @@ import Control.Monad.IO.Class (liftIO)
 import Graphics.Vty (Attr, Event (..), Key (..), black, white)
 import Sudoku.Domain (nextCol, nextRow, prevCol, prevRow)
 import Sudoku.Loader qualified as Loader
-import Sudoku.Types (Difficulty (Easy))
+import Sudoku.Types (Cell (..), Difficulty (Easy), updateGrid)
 import Sudoku.UI.Types (GameState (MainMenu, NewGameMenu, Playing), Handle (..), Menu (..), Name, PlayingState (..))
 import Sudoku.UI.Widget.GameState qualified as Widget.GameState
 import Sudoku.UI.Widget.MainMenu qualified as MainMenu
@@ -65,6 +65,14 @@ handleEvent handle (VtyEvent (EvKey KEnter [])) = do
       case mSudoku of
         Just grid -> put $ Playing (PlayingState difficulty grid (0, 0))
         Nothing -> pure () -- What to do here?
+    _ -> pure ()
+handleEvent _ (VtyEvent (EvKey (KChar key) [])) | key `elem` ['1' .. '9'] = do
+  gameState <- get
+  case gameState of
+    Playing playingState -> do
+      let num = (read [key])
+      let newState = playingState{grid = updateGrid playingState.selectedCell (Filled num) playingState.grid}
+      put $ Playing newState
     _ -> pure ()
 handleEvent _ _ = pure ()
 

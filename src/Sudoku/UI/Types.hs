@@ -27,3 +27,7 @@ data GameState
 data Handle = Handle
   { getNewSudoku :: Difficulty -> IO (Maybe UnfilledGrid)
   }
+
+isPlaying :: GameState -> Bool
+isPlaying (Playing _) = True
+isPlaying _ = False

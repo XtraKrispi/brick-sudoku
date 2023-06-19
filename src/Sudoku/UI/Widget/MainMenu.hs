@@ -3,8 +3,6 @@ module Sudoku.UI.Widget.MainMenu where
 import Brick (Widget, attrName, str, vBox, withAttr)
 import Brick.Widgets.Border (border)
 import Brick.Widgets.Center (center, hCenter)
-import Control.Monad (MonadPlus (mzero))
-import Debug.Trace (trace)
 import Sudoku.UI.Types (Menu (..), Name)
 
 toString :: Menu -> String
