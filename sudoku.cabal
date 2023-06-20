@@ -26,6 +26,7 @@ library
       Sudoku.UI.Widget.Grid
       Sudoku.UI.Widget.MainMenu
       Sudoku.UI.Widget.NewGameMenu
+      Sudoku.UI.Widget.PlayingGame
       Sudoku.Utils
   other-modules:
       Paths_sudoku
